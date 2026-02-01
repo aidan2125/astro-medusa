@@ -1,17 +1,156 @@
 ---
-
+// src/pages/index.astro
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medusa Lounge | Cape Town's After-Dark Experience</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Global Stylesheet -->
+  <style is:global>
+    @import url('../styles/global.css');
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+    
+    <div class="hero__content">
+      <img 
+        src="/images/logos/IMG_7947.svg" 
+        alt="Medusa Lounge Logo" 
+        class="hero__logo"
+      />
+      <h1>Enter the Myth.</h1>
+      <p class="hero__tagline">Cape Town's After-Dark Experience</p>
+      <a href="#" class="btn-outline">Book a Table</a>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about section">
+    <div class="container">
+      <div class="about__grid">
+        
+        <div>
+          <h2>About Medusa</h2>
+          <h3>Not just a lounge.<br/>A ritual.</h3>
+          <p>
+            Medusa Lounge is where music, luxury, and energy collide.
+            Crafted for late nights, bold spirits, and unforgettable moments.
+          </p>
+          <a href="#" class="btn-outline">Discover More</a>
+        </div>
+
+        <div class="img-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M3 19l5.5-5.5 2 2L14 12l7 7"/>
+            <rect x="1" y="1" width="22" height="22" rx="3"/>
+          </svg>
+          About Image
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EXPERIENCE CARDS -->
+  <section class="experience section">
+    <div class="container">
+      <h2>The Medusa Experience</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 3h10l-4 7h-2L7 3z"/>
+              <line x1="12" y1="10" x2="12" y2="18"/>
+              <line x1="8" y1="18" x2="16" y2="18"/>
+            </svg>
+          </div>
+          <h4>Premium Cocktails</h4>
+          <p>Handcrafted drinks that tantalize.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 14v-4a8 8 0 0116 0v4"/>
+              <rect x="2" y="14" width="3" height="6" rx="1"/>
+              <rect x="19" y="14" width="3" height="6" rx="1"/>
+            </svg>
+          </div>
+          <h4>Live DJs</h4>
+          <p>Cutting-edge beats all night long.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 19h18v-2H3v2z"/>
+              <path d="M5 17V7l4 4 3-6 3 6 4-4v10"/>
+            </svg>
+          </div>
+          <h4>VIP Tables</h4>
+          <p>Luxury &amp; exclusivity, bottle service.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/>
+            </svg>
+          </div>
+          <h4>Late-Night Energy</h4>
+          <p>Smoke, lights &amp; unforgettable vibes.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GALLERY -->
+  <section class="gallery section">
+    <div class="container">
+      <h2>Gallery</h2>
+
+      <div class="gallery__grid">
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+        <div class="gallery__item"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER CTA -->
+  <section class="footer-cta">
+    <p>Ready to experience the myth?</p>
+    <a href="#" class="btn-outline">Reserve Your Night</a>
+  </section>
+</body>
 </html>

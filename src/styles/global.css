@@ -1,0 +1,447 @@
+/* ==========================================================================
+   src/styles/global.css
+   
+   Import this in your Astro layout via:
+     <style is:global>  or  import './styles/global.css' in a layout
+   
+   Structure:
+     1. Tailwind v4 theme (replaces tailwind.config.js)
+     2. Tailwind directives
+     3. Base / reset
+     4. Typography
+     5. Utilities
+     6. Buttons
+     7. Hero
+     8. About
+     9. Experience cards
+    10. Gallery
+    11. Footer CTA
+    12. Responsive breakpoints
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. TAILWIND v4 THEME
+   In Tailwind v4, custom colors and design tokens are defined here using
+   @theme instead of in tailwind.config.js. Each --color-* becomes a utility
+   class (e.g., --color-obsidian → bg-obsidian, text-obsidian, etc.)
+   -------------------------------------------------------------------------- */
+@theme {
+  /* Colors */
+  --color-obsidian: #0a0a0a;      /* deepest black – main page background */
+  --color-charcoal: #141414;      /* slightly lighter – card/section bg */
+  --color-smoke: #1e1e1e;         /* borders, dividers */
+  --color-ivory: #f0e6d3;         /* primary text */
+  --color-ivory-dim: #a89e8c;     /* secondary/caption text */
+  --color-gold: #c8a24d;          /* accent – CTAs, headings, highlights */
+
+  /* Fonts */
+  --font-headline: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* Letter spacing (tracking) */
+  --tracking-widest: 0.1em;
+
+  /* Custom shadows */
+  --shadow-gold: 0 0 24px rgba(200, 162, 77, 0.35);
+  --shadow-gold-lg: 0 0 40px rgba(200, 162, 77, 0.4);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. TAILWIND DIRECTIVES
+   -------------------------------------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* --------------------------------------------------------------------------
+   3. BASE / RESET
+   Sets the page background, default text color, and font.
+   -------------------------------------------------------------------------- */
+html, body {
+  @apply bg-obsidian text-ivory;
+  height: 100%;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  @apply box-border;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-headline uppercase tracking-widest;
+  line-height: 1.2;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. UTILITIES
+   -------------------------------------------------------------------------- */
+.section {
+  padding: 100px 24px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.group:hover .group-hover\:glow {
+  box-shadow: 0 0 25px rgba(200, 162, 77, 0.4);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. BUTTONS
+   -------------------------------------------------------------------------- */
+.btn-outline {
+  display: inline-block;
+  border: 1px solid #c8a24d;
+  color: #c8a24d;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  padding: 14px 36px;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: #c8a24d;
+  color: #0a0a0a;
+  box-shadow: 0 0 28px rgba(200, 162, 77, 0.35);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. HERO
+   Three stacked layers:
+     • .hero__bg      – the background photo (or fallback gradient)
+     • .hero__overlay – smoke + dark gradient for text legibility
+     • .hero__content – the logo + headline + button, sits on top
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Layer 1 – background photo only.
+   Swap the url() path to your actual hero image. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    url('/images/hero.jpg') center / cover no-repeat,
+    linear-gradient(180deg, #1a1208 0%, #0a0a0a 100%);
+  z-index: 0;
+}
+
+/* Layer 2 – smoke + dark overlay sits on top of the photo.
+   The radial gradients fake the smoke pooling at the edges,
+   the linear gradient at the bottom fades into the next section. */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(30, 15, 5, 0.7) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 70%, rgba(20, 10, 5, 0.6) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+  z-index: 1;
+}
+
+/* Layer 3 – content */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 0 20px;  /* breathing room on mobile */
+}
+
+/* Logo sizing */
+.hero__logo {
+  width: 480px;
+  height: 420px;
+  max-width: 90vw;  /* never overflow on tiny screens */
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #f0e6d3;
+  text-align: center;
+}
+
+.hero__tagline {
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: #a89e8c;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. ABOUT
+   -------------------------------------------------------------------------- */
+.about {
+  background: #141414;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about h2 {
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+  color: #c8a24d;
+}
+
+.about h3 {
+  font-size: 1.4rem;
+  color: #f0e6d3;
+  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+}
+
+.about p {
+  color: #a89e8c;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 30px;
+  max-width: 420px;
+}
+
+.img-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 2px dashed #1e1e1e;
+  border-radius: 6px;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #a89e8c;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.img-placeholder svg {
+  width: 48px;
+  height: 48px;
+  stroke: #1e1e1e;
+  fill: none;
+  stroke-width: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. EXPERIENCE CARDS
+   -------------------------------------------------------------------------- */
+.experience {
+  background: #0a0a0a;
+}
+
+.experience h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+  color: #f0e6d3;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 40px 24px 32px;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  border-color: #c8a24d;
+  box-shadow: 0 0 20px rgba(200, 162, 77, 0.35);
+}
+
+.card__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+}
+
+.card__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: #c8a24d;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.card h4 {
+  font-size: 0.7rem;
+  color: #f0e6d3;
+  margin-bottom: 10px;
+  letter-spacing: 0.22em;
+}
+
+.card p {
+  font-size: 0.78rem;
+  color: #a89e8c;
+  font-weight: 300;
+}
+
+
+/* --------------------------------------------------------------------------
+  10. GALLERY
+   -------------------------------------------------------------------------- */
+.gallery {
+  background: #141414;
+}
+
+.gallery h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: #f0e6d3;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.gallery__item {
+  aspect-ratio: 1;
+  background: #0a0a0a;
+  border: 1px solid #1e1e1e;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.gallery__item:hover {
+  transform: scale(1.03);
+}
+
+.gallery__item::after {
+  content: 'IMG';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e1e1e;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+
+/* --------------------------------------------------------------------------
+  11. FOOTER CTA
+   -------------------------------------------------------------------------- */
+.footer-cta {
+  background: #0a0a0a;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.footer-cta p {
+  color: #a89e8c;
+  font-size: 0.85rem;
+  margin-bottom: 28px;
+  letter-spacing: 0.08em;
+}
+
+
+/* --------------------------------------------------------------------------
+  12. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 70px 20px;
+  }
+  
+  /* Hero mobile adjustments - logo will scale down naturally via max-width: 90vw */
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero__tagline {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+  
+  .hero__content {
+    gap: 20px;
+  }
+  
+  /* Button mobile sizing */
+  .btn-outline {
+    font-size: 0.65rem;
+    padding: 12px 28px;
+    letter-spacing: 0.25em;
+  }
+}
