@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"      # or "astro build" if you prefer explicit
+  publish = "dist"               # Astro's default output folder
+
+# Optional: environment variables (add if needed later)
+# [build.environment]
+#   NODE_VERSION = "20"
+
+# Optional: redirects or headers (example)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
