@@ -5,8 +5,8 @@
      <style is:global>  or  import './styles/global.css' in a layout
    
    Structure:
-     1. Tailwind v4 theme (replaces tailwind.config.js)
-     2. Tailwind directives
+     1. Tailwind directives
+     2. Tailwind v4 theme (replaces tailwind.config.js)
      3. Base / reset
      4. Typography
      5. Utilities
@@ -21,7 +21,14 @@
 
 
 /* --------------------------------------------------------------------------
-   1. TAILWIND v4 THEME
+   1. TAILWIND DIRECTIVES - Must be at the top
+   -------------------------------------------------------------------------- */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+
+/* --------------------------------------------------------------------------
+   2. TAILWIND v4 THEME
    In Tailwind v4, custom colors and design tokens are defined here using
    @theme instead of in tailwind.config.js. Each --color-* becomes a utility
    class (e.g., --color-obsidian → bg-obsidian, text-obsidian, etc.)
@@ -46,14 +53,6 @@
   --shadow-gold: 0 0 24px rgba(200, 162, 77, 0.35);
   --shadow-gold-lg: 0 0 40px rgba(200, 162, 77, 0.4);
 }
-
-
-/* --------------------------------------------------------------------------
-   2. TAILWIND DIRECTIVES
-   -------------------------------------------------------------------------- */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 
 /* --------------------------------------------------------------------------
@@ -105,30 +104,77 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* --------------------------------------------------------------------------
-   6. BUTTONS
+   6. BUTTONS - Gradient Glow Style
    -------------------------------------------------------------------------- */
 .btn-outline {
-  display: inline-block;
-  border: 1px solid #c8a24d;
-  color: #c8a24d;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.75rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 14px 28px;
   font-weight: 600;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  padding: 14px 36px;
+  color: #f0e6d3;
+  background: linear-gradient(to top right, rgba(200, 162, 77, 0.3), rgba(200, 162, 77, 0.7), rgba(200, 162, 77, 0.3));
+  border-radius: 9999px;
+  overflow: hidden;
   text-decoration: none;
-  background: transparent;
   cursor: pointer;
-  transition: background 0.3s ease,
-              color 0.3s ease,
-              box-shadow 0.3s ease;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 0 4px rgba(200, 162, 77, 0.2);
+}
+
+.btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 9999px;
+  background: linear-gradient(to bottom, rgba(240, 230, 211, 0.1), transparent);
+  filter: blur(40px);
 }
 
 .btn-outline:hover {
-  background: #c8a24d;
-  color: #0a0a0a;
-  box-shadow: 0 0 28px rgba(200, 162, 77, 0.35);
+  opacity: 0.9;
+}
+
+.btn-outline__svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(1.25) rotate(180deg) translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+  animation: pulse 2s ease-in-out infinite;
+  transition: transform 0.3s ease, animation 0.3s ease;
+}
+
+.btn-outline:hover .btn-outline__svg {
+  animation: none;
+  transform: scaleX(1.25) rotate(180deg) translate(-50%, -95%);
+}
+
+.btn-outline__wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  z-index: 40;
+  fill: #c8a24d;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 
@@ -157,11 +203,10 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background:
-    url('/images/hero.jpg') center / cover no-repeat,
+    url('/images/hero/Gemini_Generated_Image_roclwrroclwrrocl.png') center / cover no-repeat,
     linear-gradient(180deg, #1a1208 0%, #0a0a0a 100%);
   z-index: 0;
 }
-
 /* Layer 2 – smoke + dark overlay sits on top of the photo.
    The radial gradients fake the smoke pooling at the edges,
    the linear gradient at the bottom fades into the next section. */
@@ -225,21 +270,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about h2 {
-  font-size: 1.6rem;
+  font-size: 2.0rem;
   margin-bottom: 18px;
   color: #c8a24d;
 }
 
 .about h3 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #f0e6d3;
   margin-bottom: 16px;
   letter-spacing: 0.1em;
 }
 
 .about p {
-  color: #a89e8c;
-  font-size: 0.9rem;
+  color: #a59e90;
+  font-size: 1.0rem;
   font-weight: 300;
   margin-bottom: 30px;
   max-width: 420px;
@@ -314,21 +359,21 @@ h1, h2, h3, h4, h5, h6 {
 .card__icon svg {
   width: 100%;
   height: 100%;
-  stroke: #c8a24d;
+  stroke: #fdfdfd;
   fill: none;
   stroke-width: 1.5;
 }
 
 .card h4 {
-  font-size: 0.7rem;
-  color: #f0e6d3;
+  font-size: 0.9rem;
+  color: #0a0a09;
   margin-bottom: 10px;
   letter-spacing: 0.22em;
 }
 
 .card p {
-  font-size: 0.78rem;
-  color: #a89e8c;
+  font-size: 0.85rem;
+  color: #000000;
   font-weight: 300;
 }
 
@@ -399,7 +444,68 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* --------------------------------------------------------------------------
-  12. RESPONSIVE BREAKPOINTS
+  12. CONTACT CARDS
+   -------------------------------------------------------------------------- */
+.card {
+  --background: linear-gradient(to left, #c8a24d 0%, #d4af6a 100%);
+  width: 190px;
+  height: 254px;
+  padding: 5px;
+  border-radius: 1rem;
+  overflow: visible;
+  background: var(--background);
+  position: relative;
+  z-index: 1;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  transform: scale(0.8);
+  filter: blur(25px);
+  background: var(--background);
+  transition: opacity 0.5s;
+}
+
+.card-info {
+  --color: #0a0a0a;
+  background: var(--color);
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  border-radius: 0.7rem;
+}
+
+.card .title {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+}
+
+/* Hover */
+.card:hover::after {
+  opacity: 0;
+}
+
+.card:hover .card-info {
+  color: #080705;
+  transition: color 1s;
+}
+
+
+/* --------------------------------------------------------------------------
+  13. RESPONSIVE BREAKPOINTS
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   .about__grid {
@@ -440,8 +546,7 @@ h1, h2, h3, h4, h5, h6 {
   
   /* Button mobile sizing */
   .btn-outline {
-    font-size: 0.65rem;
-    padding: 12px 28px;
-    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    padding: 12px 24px;
   }
 }
