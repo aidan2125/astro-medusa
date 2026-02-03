@@ -60,12 +60,15 @@
         </div>
 
         <div class="img-placeholder">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          
             <circle cx="8.5" cy="8.5" r="1.5"/>
             <path d="M3 19l5.5-5.5 2 2L14 12l7 7"/>
             <rect x="1" y="1" width="22" height="22" rx="3"/>
-          </svg>
-          About Image
+          <img 
+        src="/images/logos/Medusa Logos-01.svg" 
+        alt="Medusa Lounge Logo" 
+        class="hero__logo"
+      />
         </div>
 
       </div>
@@ -118,24 +121,105 @@
   </div>
 </section>
 
-  <!-- GALLERY -->
-  <section class="gallery section">
-    <div class="container">
-      <h2>Gallery</h2>
-
-      <div class="gallery__grid">
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-        <div class="gallery__item"></div>
-      </div>
+  <!-- GALLERY SECTION -->
+<section class="gallery section py-16 md:py-24 bg-gray-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Gallery</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        
+      </p>
     </div>
-  </section>
 
+    <div class="gallery__grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+      <!-- Real gallery images -->
+      <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="public/images/gallery/SaveClip.App_486826799_17971769255846839_2376704783253198263_n.jpg"
+          alt="Project showcase 1 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_489784688_17972961083846839_7094013335770066540_n.jpg"
+          alt="Project showcase 2 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_489054240_17972961047846839_2244402201338689881_n.jpg"
+          alt="Project showcase 3 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_488852696_17972961065846839_8135151321046953457_n.jpg"
+          alt="Project showcase 4 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_488644970_17972961074846839_4097880248133322541_n.jpg"
+          alt="Project showcase 5 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      <!-- Placeholder items (you can replace with more real images later) -->
+     <div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_487037827_17971769252846839_4500792899941889784_n.jpg"
+          alt="Project showcase 5 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+<div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_486825218_17971769354846839_1988880872155742082_n.jpg"
+          alt="Project showcase 5 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+<div class="gallery__item overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+        <img
+          src="/images/gallery/SaveClip.App_486427951_17971769300846839_7636236853123823128_n.jpg"
+          alt="Project showcase 5 - Plane View Collective"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Optional: if you want to enforce consistent aspect ratio */
+  .gallery__item {
+    aspect-ratio: 4 / 3;           /* landscape feel – change to 1 / 1 for squares */
+  }
+
+  @media (max-width: 640px) {
+    .gallery__item {
+      aspect-ratio: 16 / 9;        /* more mobile-friendly on small screens */
+    }
+  }
+</style>
 
   <!-- FOOTER CTA -->
   <section class="footer-cta">
